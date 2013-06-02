@@ -2,27 +2,25 @@
 
 class Template {
 	public function output($content) {
-		$ldap = new LDAP;
-		$user = $ldap->getMember($_SERVER['PHP_AUTH_USER']);
+    if ($GLOBALS['template'] == TRUE) {
+      $mainMenu = new Menu();
+      $mainMenu->add_many(
+        array(NULL, 'Fault Reporting', NULL),
+        array('#', 'Report a Fault', 'wrench'),
+        array('#', 'List Faults', 'list'),
+        array(NULL, 'Inventory Management', NULL),
+        array('#', 'Find Equipment', 'search'),
+        array('#', 'Add Equipment', 'plus'),
+        array(NULL, 'Equipment Bookings', NULL),
+        array('#', 'Book Equipment', 'book'),
+        array('#', 'Future Bookings', 'calendar'),
+        array(NULL, 'External Hires', NULL),
+        array('#', 'New Hire', 'share-alt'),
+        array('#', 'Future Bookings', 'calendar'),
+        array('#', 'Manage Invoices', 'shopping-cart')
+        );
 
-    $mainMenu = new Menu();
-    $mainMenu->add_many(
-      array(NULL, 'Fault Reporting', NULL),
-      array('#', 'Report a Fault', 'wrench'),
-      array('#', 'List Faults', 'list'),
-      array(NULL, 'Inventory Management', NULL),
-      array('#', 'Find Equipment', 'search'),
-      array('#', 'Add Equipment', 'plus'),
-      array(NULL, 'Equipment Bookings', NULL),
-      array('#', 'Book Equipment', 'book'),
-      array('#', 'Future Bookings', 'calendar'),
-      array(NULL, 'External Hires', NULL),
-      array('#', 'New Hire', 'share-alt'),
-      array('#', 'Future Bookings', 'calendar'),
-      array('#', 'Manage Invoices', 'shopping-cart')
-      );
-
-		$return='<!DOCTYPE html>
+		  $return='<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -62,7 +60,7 @@ class Template {
           <a class="brand" href="#">'.SITE_BRAND.' TrackIt</a>
           <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <i class="icon-user"></i> Hi '.$user['nick'].'
+              <i class="icon-user"></i> Hi '.$GLOBALS['user']['nick'].'
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -97,13 +95,11 @@ class Template {
 
 
   </body>
-</html>
-';
-		if ($GLOBALS['template'] == FALSE) {
-			return $content;
-		} else {
-			return $return;
-		}
+</html>';
+      return $return;
+    } else {
+		  return $content;
+    }
 	}
 }
 ?>

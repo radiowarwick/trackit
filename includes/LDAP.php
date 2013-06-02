@@ -1,14 +1,9 @@
 <?php
 class LDAP{
 	private $link_identifier;
-	private $result_identifier;
-	private $result_entry_identifier;
-	private $bind_rdn;
-	private $username;
-	private $member;
+	private $currentUser;
 	
 	private $connection = false;
-	private $login = false;
 	
 	function __construct(){
 		$this->link_identifier=@ldap_connect('ldap://'. LDAP_HOST);
