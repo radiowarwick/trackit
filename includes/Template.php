@@ -4,6 +4,24 @@ class Template {
 	public function output($content) {
 		$ldap = new LDAP;
 		$user = $ldap->getMember($_SERVER['PHP_AUTH_USER']);
+
+    $mainMenu = new Menu();
+    $mainMenu->add_many(
+      array(NULL, 'Fault Reporting', NULL),
+      array('#', 'Report a Fault', 'wrench'),
+      array('#', 'List Faults', 'list'),
+      array(NULL, 'Inventory Management', NULL),
+      array('#', 'Find Equipment', 'search'),
+      array('#', 'Add Equipment', 'plus'),
+      array(NULL, 'Equipment Bookings', NULL),
+      array('#', 'Book Equipment', 'book'),
+      array('#', 'Future Bookings', 'calendar'),
+      array(NULL, 'External Hires', NULL),
+      array('#', 'New Hire', 'share-alt'),
+      array('#', 'Future Bookings', 'calendar'),
+      array('#', 'Manage Invoices', 'shopping-cart')
+      );
+
 		$return='<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -48,9 +66,9 @@ class Template {
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#"><i class="icon-cog"></i> Profile</a></li>
+              cog"></i> Profile
               <li class="divider"></li>
-              <li><a href="#"><i class="icon-remove"></i> Sign Out</a></li>
+              remove"></i> Sign Out
             </ul>
           </div>
         </div>
@@ -61,21 +79,7 @@ class Template {
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Fault Reporting</li>
-              <li class="active"><a href="#"><i class="icon-wrench"></i> Report a Fault</a></li>
-              <li><a href="#"><i class="icon-list"></i> List Faults</a></li>
-              <li class="nav-header">Inventory Management</li>
-              <li><a href="#"><i class="icon-search"></i> Find Equipment</a></li>
-              <li><a href="#"><i class="icon-plus"></i> Add Equipment</a></li>
-              <li class="nav-header">Equipment Bookings</li>
-              <li><a href="#"><i class="icon-book"></i> Book Equipment</a></li>
-              <li><a href="#"><i class="icon-calendar"></i> Future Bookings</a></li>
-              <li class="nav-header">External Hires</li>
-              <li><a href="#"><i class="icon-share-alt"></i> New Hire</a></li>
-              <li><a href="#"><i class="icon-calendar"></i> Future Bookings</a></li>
-              <li><a href="#"><i class="icon-shopping-cart"></i> Manage Invoices</a></li>
-            </ul>
+            '.$mainMenu->output().'
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
