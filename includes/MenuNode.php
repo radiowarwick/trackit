@@ -22,15 +22,19 @@ class MenuNode{
 	}
 
 	public function output($path,$tabs) {
-		$out = "\n".str_repeat("\t",$tabs);
+		$out = "\n".str_repeat("  ",$tabs);
 		if(strlen($this->url) > 0) {
 		 	$out .= '<li'.($this->active?' class="active"':'').'>';
 		 	$out .= '<a href="'.$this->url($path).'">';
-		 	if(strlen($this->icon) > 0) $out .= '<span class="glyphicon icon-'.$this->icon.'"></span> ';
+		 	if(strlen($this->icon) > 0) $out .= '<i class="icon-'.$this->icon.'"></i> ';
 		 	$out .= $this->label.'</a>';
 		} else {
-			$out .= '<li class="nav-header">'.$this->label;
-			if(strlen($this->icon) > 0) $out .= '<span class="glyphicon icon-'.$this->icon.'"></span> ';
+			if(strlen($this->label) > 0) {
+				$out .= '<li class="nav-header">'.$this->label;
+				if(strlen($this->icon) > 0) $out .= '<i class="icon-'.$this->icon.'"></i> ';
+			} else {
+				$out .= '<li class="divider">';
+			}
 		}
 		if(isset($this->menu)) $out .= $this->menu->output($path.$this->url.'/',$tabs+1);
 		$out  .= '</li>';

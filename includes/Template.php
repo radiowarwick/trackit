@@ -20,6 +20,13 @@ class Template {
         array('#', 'Manage Invoices', 'shopping-cart')
         );
 
+      $navBarMenu = new Menu();
+      $navBarMenu->add_many(
+        array('#', 'Profile', 'cog'),
+        array(NULL, NULL, NULL),
+        array('#', 'Sign Out', 'remove')
+        );
+
 		  $return='<!DOCTYPE html>
 <html lang="en">
   <head>
@@ -62,12 +69,7 @@ class Template {
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               <i class="icon-user"></i> Hi '.$GLOBALS['user']['nick'].'
               <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              cog"></i> Profile
-              <li class="divider"></li>
-              remove"></i> Sign Out
-            </ul>
+            </a>'.$navBarMenu->output('',7,'dropdown-menu').'
           </div>
         </div>
       </div>
@@ -76,8 +78,7 @@ class Template {
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
-          <div class="well sidebar-nav">
-            '.$mainMenu->output().'
+          <div class="well sidebar-nav">'.$mainMenu->output('',6).'
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">

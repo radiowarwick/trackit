@@ -25,9 +25,9 @@ class Menu{
 
 	public function output($path='',$tabs=0,$ul_class='nav nav-list'){
 		if(count($this->menu)>0) {
-			$out  = "\n".str_repeat("\t",$tabs).'<ul'.($ul_class?' class="'.$ul_class.'"':'').'>';
+			$out  = "\n".str_repeat("  ",$tabs).'<ul'.($ul_class?' class="'.$ul_class.'"':'').'>';
 			foreach($this->menu AS $object) $out .= $object->output($path,$tabs+1);
-			$out  .= "\n".str_repeat("\t",$tabs).'</ul>';
+			$out  .= "\n".str_repeat("  ",$tabs).'</ul>';
 		}
 		return $out;
 	}
