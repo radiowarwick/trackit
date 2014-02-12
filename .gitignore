@@ -1,2 +1,3 @@
 .htaccess
 includes/config.php
+item-assets/*

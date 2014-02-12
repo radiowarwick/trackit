@@ -5,7 +5,7 @@
           <div class="row-fluid">
             <div class="span4">
               <h2>Report a Fault</h2>
-              <form>
+              <form role="form" method="post" action="ajax/add-fault.php">
                 <div style="height:210px">
               	  <label>Location of Item</label>
               	  <select class="input-block-level" id="location">
@@ -15,7 +15,7 @@
 <?php $items = Item::getItems(NULL, FALSE); ?>
               	  <select class="input-block-level" id="itemname"><option></option><?php foreach($items as $item){ echo("<option value=\"".$item->getId()."\">".$item->getFriendlyName()." (".(is_null($item->getReferenceId())?'':$item->getReferenceId()." - ").($item->getManufacturer()?$item->getManufacturer()->getName():'')." ".$item->getModel().")</option>"); } ?></select>
               	  <label>Fault</label>
-              	  <textarea class="input-block-level"></textarea>
+              	  <textarea class="input-block-level" name="content"></textarea>
                 </div>
                 <div class="form-actions">
                   <button type="submit" class="btn btn-primary btn-block">Report Fault <i class="icon-wrench icon-white"></i></button>
