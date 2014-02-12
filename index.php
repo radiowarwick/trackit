@@ -13,7 +13,7 @@
 <option></option><?php foreach($locations as $location){ echo("<option value=\"".$location->getId()."\">".$location->getFriendlyName()."</option>"); } ?></select>
               	  <label>Name of Item</label>
 <?php $items = Item::getItems(NULL, FALSE); ?>
-              	  <select class="input-block-level" id="itemname"><option></option><?php foreach($items as $item){ echo("<option value=\"".$item->getId()."\">".$item->getFriendlyName()." (".(is_null($item->getReferenceId())?'':$item->getReferenceId()." - ").($item->getManufacturer()?$item->getManufacturer()->getName():'')." ".$item->getModel().")</option>"); } ?></select>
+              	  <select class="input-block-level" id="itemname" name="item"><option></option><?php foreach($items as $item){ echo("<option value=\"".$item->getId()."\">".$item->getFriendlyName()." (".(is_null($item->getReferenceId())?'':$item->getReferenceId()." - ").($item->getManufacturer()?$item->getManufacturer()->getName():'')." ".$item->getModel().")</option>"); } ?></select>
               	  <label>Fault</label>
               	  <textarea class="input-block-level" name="content"></textarea>
                 </div>

@@ -10,7 +10,7 @@
 		// Current time and date added to record
 		$fault->set_postdate(time());
 		// Set item
-		$fault->set_item(4);
+		$fault->set_item($_REQUEST['item']);
 
 		if ($fault->save()) {
 			header('Location: http:/http://dev.radio.warwick.ac.uk/trackit/javo');
