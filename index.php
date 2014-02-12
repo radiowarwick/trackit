@@ -26,6 +26,8 @@
               <h2>Your Reports</h2>
               <div style="height:210px">
                 <p class="muted">You haven't reported any faults before.</p>
+                <p><?php $fault = Faults::get_by_id(4);
+                echo $fault->get_id(); ?></p>
               </div>
               <div class="form-actions">
                 <a class="btn btn-info btn-block" href="#">View All <i class="icon-chevron-right icon-white"></i></a>
